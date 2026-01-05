@@ -22,12 +22,26 @@ dependencies = [
   "mkdocs-material>=9.7",
   "mkdocs-material-extensions>=1.3.1",
   "mkdocs-same-dir>=0.1.3",
+  "nbconvert>=7.16.6",
+  "numpy>=1.26.4",
+  "pandas>=2.3.3",
   "pre-commit>=4.1",
   "pymdown-extensions>=10.14.3",
+  "python-dotenv>=1.2.1",
   "ruff>=0.14.5",
+  "torch>=2.9.1",
+]
+
+[project.optional-dependencies]
+dataframes = [
+    "pandas>=2.3.3",
 ]
 
 [dependency-groups]
+dev = [
+    "pytest>=8.4.2",
+    "ruff>=0.14.9",
+]
 exercises = [
   "cookiecutter>=2.6",
   "coverage>=7.11.3",
@@ -148,3 +162,18 @@ arange = "arange"
 [tool.typos.default.extend-words]
 Ue = "Ue"
 Hashi = "Hashi"
+
+[tool.uv.workspace]
+members = [
+    "s1_files",
+]
+
+[tool.uv.sources]
+torch = [
+    { index = "pytorch-cpu" },
+]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
