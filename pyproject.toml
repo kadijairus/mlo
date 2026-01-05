@@ -32,15 +32,14 @@ dependencies = [
   "torch>=2.9.1",
 ]
 
-[project.optional-dependencies]
-dataframes = [
-    "pandas>=2.3.3",
+optional-dependencies.dataframes = [
+  "pandas>=2.3.3",
 ]
 
 [dependency-groups]
 dev = [
-    "pytest>=8.4.2",
-    "ruff>=0.14.9",
+  "pytest>=8.4.2",
+  "ruff>=0.14.9",
 ]
 exercises = [
   "cookiecutter>=2.6",
@@ -84,6 +83,21 @@ exercises = [
   "uvicorn>=0.38",
   "wandb>=0.23",
 ]
+
+[tool.uv.workspace]
+members = [
+  "s1_files",
+]
+
+[tool.uv.sources]
+torch = [
+  { index = "pytorch-cpu" },
+]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
 
 [tool.ruff]
 target-version = "py311"
@@ -162,18 +176,3 @@ arange = "arange"
 [tool.typos.default.extend-words]
 Ue = "Ue"
 Hashi = "Hashi"
-
-[tool.uv.workspace]
-members = [
-    "s1_files",
-]
-
-[tool.uv.sources]
-torch = [
-    { index = "pytorch-cpu" },
-]
-
-[[tool.uv.index]]
-name = "pytorch-cpu"
-url = "https://download.pytorch.org/whl/cpu"
-explicit = true
