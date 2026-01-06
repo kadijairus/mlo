@@ -24,6 +24,7 @@ def preprocess_data(raw_dir: str, processed_dir: str) -> None:
     train_target = train_target.long()
     test_target = test_target.long()
 
+
     train_images = normalize(train_images)
     test_images = normalize(test_images)
 

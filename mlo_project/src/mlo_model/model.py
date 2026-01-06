@@ -2,6 +2,7 @@ import torch
 from torch import nn
 
 
+
 class MyAwesomeModel(nn.Module):
     """My awesome model."""
 

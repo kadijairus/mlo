@@ -43,5 +43,6 @@ def visualize(model_checkpoint: str, figure_name: str = "embeddings.png") -> Non
     plt.savefig(f"reports/figures/{figure_name}")
 
 
+
 if __name__ == "__main__":
     typer.run(visualize)
