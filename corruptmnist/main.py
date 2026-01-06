@@ -11,7 +11,7 @@ app = typer.Typer()
 
 @app.command()
 def train(lr: float = 1e-3, batch_size: int = 32, epochs: int = 10) -> None:
-    """Train a model on MNIST."""
+    """Train a model on MNIST. Initial example."""
     print("Training day and night")
     print(f"{lr=}, {batch_size=}, {epochs=}")
 
