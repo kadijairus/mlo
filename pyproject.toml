@@ -13,6 +13,7 @@ classifiers = [
 ]
 dependencies = [
   "codespell>=2.4.1",
+  "gdown>=5.2.0",
   "invoke>=2.2",
   "ipython>=9.0.2",
   "markdown-exec[ansi]>=1.10",
@@ -29,7 +30,6 @@ dependencies = [
   "pymdown-extensions>=10.14.3",
   "python-dotenv>=1.2.1",
   "ruff>=0.14.5",
-  "torch>=2.9.1",
 ]
 
 optional-dependencies.dataframes = [

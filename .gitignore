@@ -164,7 +164,7 @@ reviews.csv
 bert_sentiment_model.pt
 prediction*.json
 **/service_account_key.json
-corruptmnist_v1/
+corruptmnist/
 corruptmnist_v2/
 tools/repo_stats/report.py
 tools/repo_stats/README.md
