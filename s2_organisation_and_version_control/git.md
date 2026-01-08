@@ -166,7 +166,7 @@ working together on the same project.
     1. Go online and find a project you do not own, where you can improve the code. You can either look at this
         [page](https://goodfirstissue.dev/) of good issues to get started with or for simplicity you can just choose
         [the repository belonging to the course](https://github.com/SkafteNicki/dtu_mlops). Now fork the project by
-        clicking the *Fork* button.
+        clicking the *fork* button.
 
         ![forking](../figures/forking.PNG)
 
@@ -260,7 +260,6 @@ working together on the same project.
             hint: preference for all repositories. You can also pass --rebase, --no-rebase,
             hint: or --ff-only on the command line to override the configured default per
             hint: invocation.
-
             ```
 
             In general we recommend setting `git config pull.rebase false` to merge the changes. This is the default
