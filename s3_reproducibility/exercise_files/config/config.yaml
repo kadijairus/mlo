@@ -1,0 +1,10 @@
+experiment:
+    batch_size: 64
+    learning_rate: 0.001
+    x_dim: 784
+    latent_dim: 32
+    hidden_dim: 400  # Note: A common value is 400, not 784
+    lr: 1e-3
+    n_epochs: 50
+    seed: 1234
+    dataset_path: "data/raw"

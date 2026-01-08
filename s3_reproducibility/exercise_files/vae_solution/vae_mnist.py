@@ -6,7 +6,6 @@ A simple implementation of Gaussian MLP Encoder and Decoder trained on MNIST
 import logging
 import os
 
-import hydra
 import torch
 import torch.nn as nn
 import torchvision.transforms as transforms
@@ -15,6 +14,8 @@ from omegaconf import OmegaConf
 from torch.utils.data import DataLoader
 from torchvision.datasets import MNIST
 from torchvision.utils import save_image
+import hydra
+
 
 log = logging.getLogger(__name__)
 
@@ -23,7 +24,7 @@ log = logging.getLogger(__name__)
 @hydra.main(config_path="config", config_name="default_config.yaml")
 def train(config) -> None:
     """Train VAE on MNIST."""
-    print(f"configuration: \n {OmegaConf.to_yaml(config)}")
+    logging.info(f"configuration: \n {OmegaConf.to_yaml(config)}")
     hparams = config.experiment
     torch.manual_seed(hparams["seed"])
     device = "cuda" if torch.cuda.is_available() else "cpu"

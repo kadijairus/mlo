@@ -77,7 +77,9 @@ beartype==0.22.9
     #   py-key-value-aio
     #   py-key-value-shared
 beautifulsoup4==4.14.3
-    # via nbconvert
+    # via
+    #   gdown
+    #   nbconvert
 bidict==0.23.1
     # via python-socketio
 billiard==4.2.4
@@ -262,6 +264,7 @@ fastjsonschema==2.21.2
 filelock==3.20.2
     # via
     #   datasets
+    #   gdown
     #   huggingface-hub
     #   iterative-telemetry
     #   torch
@@ -309,6 +312,8 @@ funcy==2.0
     #   pydrive2
 gcsfs==2025.10.0
     # via dvc-gs
+gdown==5.2.0
+    # via dtu-mlops (pyproject.toml)
 gevent==25.9.1
     # via
     #   geventhttpclient
@@ -868,6 +873,8 @@ pyparsing==3.3.1
     #   grandalf
     #   httplib2
     #   pydot
+pysocks==1.7.1
+    # via requests
 pytest==9.0.2
     # via
     #   dtu-mlops (pyproject.toml:exercises)
@@ -961,6 +968,7 @@ requests==2.32.5
     #   dvc-studio-client
     #   evidently
     #   gcsfs
+    #   gdown
     #   google-api-core
     #   google-cloud-storage
     #   huggingface-hub
@@ -1144,6 +1152,7 @@ tqdm==4.67.1
     #   dvc
     #   dvc-data
     #   fsspec
+    #   gdown
     #   huggingface-hub
     #   nltk
     #   optuna
