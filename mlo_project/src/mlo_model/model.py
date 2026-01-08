@@ -1,8 +1,9 @@
+import pytorch_lightning as pl
 import torch
 from torch import nn
 
 
-class MyAwesomeModel(nn.Module):
+class MyAwesomeModel(pl.LightningModule):
     """My awesome model."""
 
     def __init__(self) -> None:
@@ -12,6 +13,8 @@ class MyAwesomeModel(nn.Module):
         self.conv3 = nn.Conv2d(64, 128, 3, 1)
         self.dropout = nn.Dropout(0.5)
         self.fc1 = nn.Linear(128, 10)
+
+        self.loss_fn = nn.CrossEntropyLoss()
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """Forward pass."""
@@ -24,6 +27,23 @@ class MyAwesomeModel(nn.Module):
         x = torch.flatten(x, 1)
         x = self.dropout(x)
         return self.fc1(x)
+
+    def training_step(self, batch):
+        """Training step."""
+        img, target = batch
+        y_pred = self(img)
+        loss = self.loss_fn(y_pred, target)
+        return loss
+
+    def validation_step(self, batch, batch_idx):
+        img, target = batch
+        y_pred = self(img)
+        loss = self.loss_fn(y_pred, target)
+        self.log("val_loss", loss)
+
+    def configure_optimizers(self):
+        """Configure optimizer."""
+        return torch.optim.Adam(self.parameters(), lr=1e-3)
 
 
 if __name__ == "__main__":
