@@ -16,6 +16,7 @@ dependencies = [
   "gdown>=5.2",
   "invoke>=2.2",
   "ipython>=9.0.2",
+  "loguru>=0.7.3",
   "markdown-exec[ansi]>=1.10",
   "mkdocs-exclude>=1.0.2",
   "mkdocs-git-revision-date-localized-plugin>=1.4.5",
@@ -29,6 +30,7 @@ dependencies = [
   "pre-commit>=4.1",
   "pymdown-extensions>=10.14.3",
   "python-dotenv>=1.2.1",
+  "pytorch-lightning>=2.5.6",
   "ruff>=0.14.5",
 ]
 

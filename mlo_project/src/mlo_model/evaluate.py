@@ -1,7 +1,7 @@
 import torch
 import typer
-from .data import corrupt_mnist
-from .model import MyAwesomeModel
+from data import corrupt_mnist
+from model import MyAwesomeModel
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
 
@@ -11,8 +11,11 @@ def evaluate(model_checkpoint: str) -> None:
     print("Evaluating like my life depended on it")
     print(model_checkpoint)
 
-    model = MyAwesomeModel().to(DEVICE)
-    model.load_state_dict(torch.load(model_checkpoint))
+    try:
+        model = MyAwesomeModel.load_from_checkpoint(model_checkpoint).to(DEVICE)
+    except FileNotFoundError:
+        print(f"Error: Checkpoint file not found at {model_checkpoint}")
+        return
 
     _, test_set = corrupt_mnist()
     test_dataloader = torch.utils.data.DataLoader(test_set, batch_size=32)
