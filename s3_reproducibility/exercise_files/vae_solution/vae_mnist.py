@@ -6,6 +6,7 @@ A simple implementation of Gaussian MLP Encoder and Decoder trained on MNIST
 import logging
 import os
 
+import hydra
 import torch
 import torch.nn as nn
 import torchvision.transforms as transforms
@@ -14,8 +15,6 @@ from omegaconf import OmegaConf
 from torch.utils.data import DataLoader
 from torchvision.datasets import MNIST
 from torchvision.utils import save_image
-import hydra
-
 
 log = logging.getLogger(__name__)
 
