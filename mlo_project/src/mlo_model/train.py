@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import torch
 import typer
+import os
 from data import corrupt_mnist
 from model import MyAwesomeModel
 
@@ -11,6 +12,9 @@ def train(lr: float = 1e-3, batch_size: int = 32, epochs: int = 10) -> None:
     """Train a model on MNIST."""
     print("Training day and night")
     print(f"{lr=}, {batch_size=}, {epochs=}")
+
+    os.makedirs("models", exist_ok=True)
+    os.makedirs("reports/figures", exist_ok=True)
 
     model = MyAwesomeModel().to(DEVICE)
     train_set, _ = corrupt_mnist()
@@ -39,7 +43,7 @@ def train(lr: float = 1e-3, batch_size: int = 32, epochs: int = 10) -> None:
                 print(f"Epoch {epoch}, iter {i}, loss: {loss.item()}")
 
     print("Training complete")
-    torch.save(model.state_dict(), "models/model.pth")
+    torch.save(model.state_dict(), "models/model1.pth")
     fig, axs = plt.subplots(1, 2, figsize=(15, 5))
     axs[0].plot(statistics["train_loss"])
     axs[0].set_title("Train loss")
