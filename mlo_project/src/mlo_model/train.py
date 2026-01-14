@@ -8,17 +8,23 @@ from model import MyAwesomeModel
 from pytorch_lightning.loggers import WandbLogger
 import wandb
 from dotenv import load_dotenv
+import hydra
+from omegaconf import DictConfig, OmegaConf
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
 
-
-def train(lr: float = 1e-3, batch_size: int = 32, epochs: int = 10) -> None:
+@hydra.main(config_path="config", config_name="config.yaml")
+def train(config: DictConfig) -> None:
     """Train a model on MNIST."""
     load_dotenv()
     wandb_logger = WandbLogger(project="dtu_mlops_course", name="my_awesome_run")
     print("Training day and night")
-    print(f"{lr=}, {batch_size=}, {epochs=}")
-
+    print(f"Configuration: {OmegaConf.to_yaml(config)}")
+    pl.seed_everything(config.experiment.seed)
+    model = MyAwesomeModel(lr=config.model.lr)
+    train_set, test_set = corrupt_mnist(config.data.path)
+    train_dataloader = torch.utils.data.DataLoader(train_set, batch_size=config.training.batch_size)
+    val_dataloader = torch.utils.data.DataLoader(test_set, batch_size=config.training.batch_size)
     early_stopping_callback = EarlyStopping(
         monitor="val_loss", patience=3, verbose=True, mode="min"
     )
@@ -29,8 +35,6 @@ def train(lr: float = 1e-3, batch_size: int = 32, epochs: int = 10) -> None:
     os.makedirs("models", exist_ok=True)
     os.makedirs("reports/figures", exist_ok=True)
 
-    model = MyAwesomeModel()
-    train_set, test_set = corrupt_mnist()
 
     train_dataloader = torch.utils.data.DataLoader(train_set, batch_size=batch_size)
     val_dataloader = torch.utils.data.DataLoader(test_set, batch_size=batch_size)
@@ -80,4 +84,4 @@ class WandbImageCallback(pl.Callback):
             trainer.logger.experiment.log({"Gradients": wandb.Histogram(grads)})
 
 if __name__ == "__main__":
-    typer.run(train)
+    train()

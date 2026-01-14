@@ -6,8 +6,9 @@ from torch import nn
 class MyAwesomeModel(pl.LightningModule):
     """My awesome model."""
 
-    def __init__(self) -> None:
+    def __init__(self, lr: float = 1e-3) -> None:
         super().__init__()
+        self.save_hyperparameters()
         self.conv1 = nn.Conv2d(1, 32, 3, 1)
         self.conv2 = nn.Conv2d(32, 64, 3, 1)
         self.conv3 = nn.Conv2d(64, 128, 3, 1)
@@ -43,7 +44,7 @@ class MyAwesomeModel(pl.LightningModule):
 
     def configure_optimizers(self):
         """Configure optimizer."""
-        return torch.optim.Adam(self.parameters(), lr=1e-3)
+        return torch.optim.Adam(self.parameters(), lr=self.hparams.lr)
 
 
 if __name__ == "__main__":
