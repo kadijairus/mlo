@@ -1,0 +1,21 @@
+# original_work_dir for Hydra
+defaults:
+  - _self_
+
+# A group for all training hyperparameters
+training:
+  batch_size: 64
+  learning_rate: 0.001
+  epochs: 10
+
+# A group for model architecture
+model:
+  lr: ${training.learning_rate} # You can reference other values!
+
+# A group for data paths
+data:
+  path: "data/processed"
+
+# A group for experiment-wide settings
+experiment:
+  seed: 42
